@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} New Detail {% endblock %}
+
+{% block content %}
+<!-- Main -->
+	<div id="main" class="alt">
+		<section id="one">
+			<div class="inner">
+				<header class="major">
+					<h1>{{ new.title }}</h1>
+				</header>
+				{% if new.image %}
+					<span class="image main"><img src="{{ new.image.url }}" alt="{{ new.title }}" /></span>
+				{% else %}
+					<span class="image main"><img src="{% static 'images/default.jpg' %}" alt="{{ new.title }}" /></span>
+				{% endif %}
+				<p>{{ new.description }}</p>
+			</div>
+		</section>
+	</div>
+{% endblock %}

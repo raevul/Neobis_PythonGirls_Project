@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Create new {% endblock %}
+
+{% block content %}
+	<div id="main" class="alt">
+		<div class="inner">
+			<header class="major">
+				<h1>Create new</h1>
+			</header>
+
+			<form method="post" action="#">
+				{% csrf_token %}
+				<div class="row gtr-uniform">
+					<div class="col-6 col-12-xsmall">
+						<input type="text" name="demo-title" id="demo-title" value="" placeholder="Title" />
+					</div>
+					<div class="col-6 col-12-xsmall">
+						<input type="text" name="demo-description" id="demo-description" value="" placeholder="Description" />
+					</div>
+					<div class="col-12">
+						<select name="demo-category" id="demo-category">
+							<option value="">- Category -</option>
+						</select>
+					</div>
+				</div>
+				<a href="#"><button class="submit">Create</button></a>
+			</form>
+		</div>
+	</div>
+{% endblock %}
