@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import News
 
 
-class NewsCreateForm(ModelForm):
+class NewCreateForm(ModelForm):
     class Meta:
         model = News
-        fields = '__all__'
+        fields = ['title', 'description', 'image']

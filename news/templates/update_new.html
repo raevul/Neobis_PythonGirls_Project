@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Update new {% endblock %}
+
+{% block content %}
+	<div id="main" class="alt">
+		<div class="inner">
+			<header class="major">
+				<h1>Update new</h1>
+			</header>
+			<form method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit" class="button">Update</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

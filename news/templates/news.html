@@ -29,12 +29,14 @@
             <section id="two" class="spotlights">
                 <section>
                     <a href="{% url 'new_detail' new_id=new.id %}" class="image">
-                        <img src="{{ new.image.url }}" alt="" data-position="center center" />
+                        <img style="width: 520px; height: 320px;" src="{{ new.image.url }}" alt="{{ new.title }}" data-position="center center" />
                     </a>
                     <div class="content">
                         <div class="inner">
                             <header class="major">
                                 <h3>{{ new.title }}</h3>
+                                <p>Publication date - {{ new.created_at }}</p>
+                                <p>Publication Update - {{ new.updated_at }}</p>
                             </header>
                             <p>{{ new.description | truncatechars:100 }}</p>
                             <ul class="actions">
