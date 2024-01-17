@@ -1,38 +1,38 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 
-from .models import News
-from .forms import NewCreateForm
+from .models import Girls
+from .forms import GirlAddForm
 
 
 def home(request):
-    news = News.objects.all()
+    girls = Girls.objects.all()
     context = {
-        "news": news
+        "girls": girls
     }
-    return render(request, "news.html", context)
+    return render(request, "girls.html", context)
 
 
-def new_detail(request, new_id):
-    new = get_object_or_404(News, id=new_id)
+def girl_biography(request, girl_id):
+    girl = get_object_or_404(Girls, id=girl_id)
     context = {
-        "new": new
+        "girl": girl
     }
-    return render(request, "new_detail.html", context)
+    return render(request, "girl_biography.html", context)
 
 
-class NewCreateView(View):
-    template = "create_new.html"
+class GirlAddView(View):
+    template = "girl_add.html"
 
     def get(self, request):
-        form = NewCreateForm()
+        form = GirlAddForm()
         context = {
             'form': form
         }
         return render(request, self.template, context)
 
     def post(self, request):
-        form = NewCreateForm(request.POST, request.FILES)
+        form = GirlAddForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -42,30 +42,32 @@ class NewCreateView(View):
         return render(request, self.template, context)
 
 
-class NewUpdateView(View):
-    template = "update_new.html"
+class GirlUpdateView(View):
+    template = "girl_update.html"
 
-    def get(self, request, new_id):
-        new = News.objects.get(id=new_id)
-        form = NewCreateForm(instance=new)
+    def get(self, request, girl_id):
+        girl = Girls.objects.get(id=girl_id)
+        form = GirlAddForm(instance=girl)
         context = {
-            'new': new,
+            'girl': girl,
             'form': form
         }
         return render(request, self.template, context)
 
-    def post(self, reqeust, new_id):
-        new = News.objects.get(id=new_id)
-        form = NewCreateForm(reqeust.POST, instance=new)
+    def post(self, reqeust, girl_id):
+        girl = Girls.objects.get(id=girl_id)
+        form = GirlAddForm(reqeust.POST, instance=girl)
         if form.is_valid():
             form.save()
             return redirect("home")
         context = {
-            'new': new,
+            'girl': girl,
             'form': form
         }
         return render(reqeust, self.template, context)
 
 
-class NewDeleteView(View):
-    ...
+def girl_delete(request, girl_id):
+    girl = Girls.objects.get(id=girl_id)
+    girl.delete()
+    return redirect('home')

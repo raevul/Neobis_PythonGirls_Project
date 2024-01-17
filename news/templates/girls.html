@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Girls
+{% endblock %}
+
+{% block content %}
+    <section id="banner" class="style2">
+        <div class="inner">
+            <span class="image">
+                <img src="{% static 'images/photo.jpg' %}" alt="banner" />
+            </span>
+            <header class="major">
+                <h1>Girls</h1>
+            </header>
+            <div class="content">
+                <p>Famous girls of the world</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="main">
+        {% for girl in girls %}
+            <section id="two" class="spotlights">
+                <section>
+                    <a href="{% url 'girl_biography' girl_id=girl.id %}" class="image">
+                        <img style="width: 550px; height: 373px;" src="{{ girl.image.url }}" alt="{{ girl.name }}" data-position="center center" />
+                    </a>
+                    <div class="content">
+                        <div class="inner">
+                            <header class="major">
+                                <h3>{{ girl.name }}</h3>
+                                <p>Publication date - {{ girl.created_at }}</p>
+                                <p>Publication Update - {{ girl.updated_at }}</p>
+                            </header>
+                            <p>{{ girl.biography | truncatechars:100 }}</p>
+                            <ul class="actions">
+                                <li><a href="{% url 'girl_biography' girl_id=girl.id %}" class="button">Learn more</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        {% endfor %}
+    </div>
+{% endblock %}

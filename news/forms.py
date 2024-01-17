@@ -1,9 +1,10 @@
 from django.forms import ModelForm
+from django import forms
 
-from .models import News
+from .models import Girls
 
 
-class NewCreateForm(ModelForm):
+class GirlAddForm(ModelForm):
     class Meta:
-        model = News
-        fields = ['title', 'description', 'image']
+        model = Girls
+        fields = ['name', 'biography', 'image', 'category']

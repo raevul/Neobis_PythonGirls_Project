@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Create new {% endblock %}
+{% block title %} Add new girl {% endblock %}
 
 {% block content %}
 	<div id="main" class="alt">
 		<div class="inner">
 			<header class="major">
-				<h1>Create new</h1>
+				<h1>Add new girl</h1>
 			</header>
-			<form action="{% url 'create_new' %}" method="post">
+			<form action="{% url 'girl_add' %}" method="post">
 				{% csrf_token %}
 				{{ form.as_p }}
-				<button type="submit" class="button">Create</button>
+				<button type="submit" class="button">Add</button>
 			</form>
 		</div>
 	</div>
