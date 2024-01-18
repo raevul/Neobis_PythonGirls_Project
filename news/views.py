@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 
-from .models import Girls
+from .models import Girls, Category
 from .forms import GirlAddForm
 
 
@@ -13,10 +13,18 @@ def home(request):
     return render(request, "girls.html", context)
 
 
+def girls_filter(request, title):
+    girls = Girls.objects.filter(category__title=title)
+    context = {"girls": girls}
+    return render(request, "girls_filter.html", context)
+
+
 def girl_biography(request, girl_id):
     girl = get_object_or_404(Girls, id=girl_id)
+    categories = girl.category.all()
     context = {
-        "girl": girl
+        "girl": girl,
+        "categories": categories,
     }
     return render(request, "girl_biography.html", context)
 

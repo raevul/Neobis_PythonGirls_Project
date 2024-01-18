@@ -18,6 +18,14 @@
 					<span class="image main"><img style="width: 1200px; height: 800px;" src="{% static 'images/default.jpg' %}" alt="{{ girl.name }}" /></span>
 				{% endif %}
 				<p>{{ girl.biography }}</p>
+				<div class="inner">
+					<h3>View other girls from this category</h3>
+					<ul>
+					{% for category in categories %}
+						<li><a href="{% url 'girls_filter' title=category.title %}">{{ category }}</a></li>
+					{% endfor %}
+					</ul>
+				</div>
 				<a href="{% url 'girl_update' girl_id=girl.id %}"><button class="button">Update</button></a>
 				<a href="{% url 'girl_delete' girl_id=girl.id %}"><button class="button">Delete</button></a>
 			</div>
