@@ -29,8 +29,8 @@
                         <div class="inner">
                             <header class="major">
                                 <h3>{{ girl.name }}</h3>
-                                <p>Publication date - {{ girl.created_at }}</p>
-                                <p>Publication Update - {{ girl.updated_at }}</p>
+                                <p>Publication date - {{ girl.created_at|date:"d-F-Y H:i" }}</p>
+                                <p>Publication Update - {{ girl.updated_at|date:"d-F-Y H:i" }}</p>
                             </header>
                             <p>{{ girl.biography | truncatechars:100 }}</p>
                             <ul class="actions">

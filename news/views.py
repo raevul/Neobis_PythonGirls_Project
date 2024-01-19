@@ -9,7 +9,7 @@ def home(request):
     girls = Girls.objects.all()
     context = {
         "girls": girls
-    }
+}
     return render(request, "girls.html", context)
 
 
